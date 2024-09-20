@@ -21,7 +21,7 @@ convert_mouse_seu_to_human <- function(seu) {
 
     for (i in seu_slots) {
         current_slot <- slot(seu@assays[["RNA"]], i)
-        if (!(dim(current_slot) == c(0, 0))) {
+        if (all(!(dim(current_slot) == c(0, 0)))) {
             rownames(slot(seu@assays[["RNA"]], i)) <- new_rownames
         }
     }
