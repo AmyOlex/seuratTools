@@ -45,6 +45,12 @@ devtools::install_github("whtns/seuratTools")
 seuratTools::create_project_db()
 ```
 
+To install the debugged branch for gene symbol conversion:
+```r
+install.packages("devtools")
+devtools::install_github("AmyOlex/seuratTools", ref="debug_cross_species")
+```
+
 You can also customize the location of the app using these steps:
 
 ``` r
