@@ -20,9 +20,9 @@ convert_mouse_seu_to_human <- function(seu) {
     seu_slots <- c("counts", "data", "scale.data", "meta.features")
 
     for (i in seu_slots) {
-        current_slot <- slot(seu@assays[["RNA"]], i)
+        current_slot <- LayerData(seu, assay = "RNA", layer = i) #slot(seu@assays[["RNA"]], i)
         if (all(!(dim(current_slot) == c(0, 0)))) {
-            rownames(slot(seu@assays[["RNA"]], i)) <- new_rownames
+            rownames(LayerData(seu, assay = "RNA", layer = i)) <- new_rownames
         }
     }
 
@@ -45,7 +45,7 @@ convert_human_seu_to_mouse <- function(seu, ...) {
 
 
     for (i in seu_slots) {
-        rownames(slot(seu@assays[["gene"]], i)) <- new_rownames
+        rownames(LayerData(seu, assay = "RNA", layer = i)) <- new_rownames
     }
 
     return(seu)
