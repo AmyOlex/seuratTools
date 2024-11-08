@@ -16,15 +16,15 @@ convert_mouse_seu_to_human <- function(seu) {
     seu[["mouse"]] <- seu[["RNA"]]
 
     new_rownames <- convert_symbols_by_species(src_genes = rownames(seu), src_species = "mouse")
+    rownames(seu[["RNA"]]) <- new_rownames
+    #seu_slots <- c("counts", "data", "scale.data", "meta.features")
 
-    seu_slots <- c("counts", "data", "scale.data", "meta.features")
-
-    for (i in seu_slots) {
-        current_slot <- LayerData(seu, assay = "RNA", layer = i) #slot(seu@assays[["RNA"]], i)
-        if (all(!(dim(current_slot) == c(0, 0)))) {
-            rownames(LayerData(seu, assay = "RNA", layer = i)) <- new_rownames
-        }
-    }
+    #for (i in seu_slots) {
+    #    current_slot <- LayerData(seu, assay = "RNA", layer = i) #slot(seu@assays[["RNA"]], i)
+    #    if (all(!(dim(current_slot) == c(0, 0)))) {
+    #        rownames(LayerData(seu, assay = "RNA", layer = i)) <- new_rownames
+    #    }
+    #}
 
     return(seu)
 }
